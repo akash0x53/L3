@@ -1,4 +1,5 @@
 # Django settings for web_app project.
+import os
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -68,7 +69,7 @@ STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 # Additional locations of static files
-STATICFILES_DIRS = ('/home/akash/django/web_l3/web_app/',
+STATICFILES_DIRS = (os.path.dirname(__file__),
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -107,8 +108,7 @@ ROOT_URLCONF = 'web_app.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'web_app.wsgi.application'
 
-TEMPLATE_DIRS = (
-                 "/home/akash/django/web_l3/html/",
+TEMPLATE_DIRS = (os.path.dirname(__file__)+"/html/",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
