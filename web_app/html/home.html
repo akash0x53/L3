@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'style/css/bootstrap.css' %}"></link> 
+<link rel="stylesheet" href="{% static 'style/css/bootstrap.css' %}"></link>
+
+<script type="text/javascript" src="{% static 'style/js/jquery-2.0.3.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'style/js/underscore-min.js' %}"></script>
+<script type="text/javascript" src="{% static 'style/js/backbone-min.js' %}"></script>
+
+
+ 
 <title>{{ title }}</title>
 </head>
 <body>
@@ -14,18 +21,30 @@
 	</br>
 	</br>
 	
-		<!--  <div class="input-append">
-			<input type="text" id="appendInputButton" placeholder="Please Enter URL" class="span6" type="url" required>
-			<button class="btn btn-primary" type="button" text="asdasd">Submit</button>
-		</div>-->
-		
-		<form class="form-inline">
+	<form class="form-inline" method="post" action="/submit/"> 
 		<div class="input-append">
-			<input type="text" id="appendInputButton" placeholder="Please Enter URL" class="span6" type="url" required>
-			<button class="btn btn-primary" type="submit" text="asdasd">Submit</button>
+			<input type="text" name='url' id="appendInputButton" placeholder="Please Enter URL" class="span6" type="url" required>
+			<button class="btn btn-primary" type="submit" name="get_url" id="get_url">Submit</button>
 		</div>
-		</form>
+	</form>
+		
 	</div>
+	{% if title_found or meta_found %}
+	<form class="form-inline" action="/store/" method='post'>
+	<table class="table table-hover">
+	<thead><tr><th>Key</th><th>Values</th></tr></th>
+	<tbody>
+		
+		<tr><td>Title</td> <td class="edt_cell1"><input type="text" name="title" value='{{ title_found }}'/></td></tr>
+		<tr><td>Meta info</td> <td class="edt_cell2"><input type="text" name="meta" value='{{ meta_found }}'/></td></tr>
+		
+		</tbody>
+	</table>
+		
+		<button type="submit" class="btn btn-primary">Store</button>
+	</form> 
+	{% endif %}
+	
 </div>
 
 </body>
